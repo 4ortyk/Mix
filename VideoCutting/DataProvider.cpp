@@ -164,7 +164,6 @@ void CDataProvider::cleanBuffer()
 {
 	if (m_Buffer != NULL) {
 		delete [] m_Buffer;
-		printf("%p\n", m_Buffer);
 		m_Buffer = NULL;
 	}
 }
