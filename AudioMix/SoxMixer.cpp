@@ -68,6 +68,7 @@ bool CSoxMixer::addData(const CDataProvider::ProviderPtr& pProvider)
 	unsigned dataLen = pProvider->getNextDataPortion(m_PortionLen, dataStream);
 	if (dataLen < 1) {
 		delete [] dataStream;
+		dataStream = NULL;
 		return false;
 	}
 	
@@ -98,6 +99,7 @@ bool CSoxMixer::addData(const CDataProvider::ProviderPtr& pProvider)
 		m_MaxUnoChanelSampleLen = ::std::max(m_MaxUnoChanelSampleLen, dataLen / m_NumChanels);
 	}
 	delete [] dataStream;
+	dataStream = NULL;
 
 	return true;
 }

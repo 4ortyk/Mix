@@ -56,9 +56,8 @@ CDataProvider::~CDataProvider()
 		m_Buffer = NULL;
 	}
 
-	if (obj.m_Buffer == NULL) {
+	if (obj.m_Buffer == NULL)
 		return *this;
-	}
 
 	m_Buffer = new Uint8[m_BuffLen];
 	if (m_Buffer != NULL) {
@@ -85,8 +84,10 @@ void CDataProvider::setBuffer(Uint8* buff, const unsigned buffLen)
 		return;
 
 	m_BuffLen = buffLen;
-	if (m_Buffer)
+	if (m_Buffer) {
 		delete [] m_Buffer;
+		m_Buffer = NULL;
+	}
 
 	m_Buffer = new Uint8[m_BuffLen];
 	memcpy(buff, m_Buffer, buffLen);
@@ -106,8 +107,10 @@ void CDataProvider::setBufferFromFile(const String& fileName, unsigned headerSiz
 	std::streamoff begin = inputFile.tellg();
 	m_BuffLen = (unsigned) (end - begin);
 
-	if (m_Buffer)
+	if (m_Buffer) {
 		delete [] m_Buffer;
+		m_Buffer = NULL;
+	}
 
 	m_Buffer = new Uint8[m_BuffLen];
 	inputFile.read((char *)m_Buffer, m_BuffLen);

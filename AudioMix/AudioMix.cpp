@@ -69,10 +69,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		CAudioPort *pAudioPort = new CAudioPort();
 		audioPortVec.push_back(pAudioPort);
 
-		String fileName = _T("Mix_%d.wav");
-		boost::wformat f(fileName);
-		f%(i+1);
-		pAudioPort->setOutputFileName(f.str());
+		String fileName = _T("Mix_");
+		TCHAR num[5];
+		_itow_s(i + 1, num, 10);
+		fileName += num;
+		fileName += _T(".wav");
+		pAudioPort->setOutputFileName(fileName);
 	
 		for (unsigned j = 0; j < AUDIO_SOURCE_COUNT; ++j) {
 			pAudioPort->AddDataFile(srcNames.at(i * AUDIO_SOURCE_COUNT + j));

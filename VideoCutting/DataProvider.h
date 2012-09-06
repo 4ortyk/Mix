@@ -28,32 +28,15 @@ public:
 	CDataProvider(const String& fileName, unsigned width,
 		unsigned height, unsigned framesPerSec, unsigned videoLen);
 
-	/**
-	 * Create provider using buffered data
-	 * @param buff			buffer with encoded video data
-	 * @param buffLen		bytes count that should be copied into provider buffer from src
-	 * @param width			video frame width
-	 * @param height		video frame height
-	 * @param framesPerSec	video frequency
-	 * @param videoLen		video length in sec
-	 */
-	CDataProvider(Uint8* buff, const unsigned buffLen, unsigned width,
-		unsigned height, unsigned framesPerSec, unsigned videoLen);
-
 	CDataProvider(const CDataProvider& obj);
 	virtual ~CDataProvider();
 
 	virtual CDataProvider& operator=(const CDataProvider& obj);
 
 	/**
-	 * Init provider data form buffer
-	 */
-	virtual void setBuffer(Uint8* buff, const unsigned buffLen);
-
-	/**
 	 * Inti provider data from encoded video file
 	 */
-	virtual void setBufferFromEncodeFile(const String& fileName);
+	virtual void setBufferFromEncodeFile();
 
 	/**
 	 * Copy next frame from provider buffer
@@ -100,11 +83,15 @@ protected:
 	void cleanBuffer();
 
 protected:
+	String m_SrcFileName;		// name of video sources file
+	
+	unsigned m_FilePos;			// current read file data position
+
 	Uint8 *m_Buffer;			// buffer with video data content (without header, only samples)
 
 	unsigned m_BuffLen;			// buffer with audio data size in byte
 
-	unsigned m_Pos;				// current read data position
+	unsigned m_BuffPos;			// current read buffered data position
 
 	unsigned m_FramesPerSec;	// video frequency
 
@@ -114,5 +101,5 @@ protected:
 
 	unsigned m_Height;			// video frame height
 
-	unsigned m_TimeLength;		// video trake length, s
+	unsigned m_BuffTimeLen;		// video trake length, s
 };

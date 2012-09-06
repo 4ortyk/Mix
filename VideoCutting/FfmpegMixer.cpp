@@ -53,7 +53,9 @@ void CFfmpegMixer::ScaleFrame(Uint8 *srcBuff, size_t originalW, size_t originalH
 		PIX_FMT_YUV420P, SWS_BICUBIC, NULL, NULL, NULL);
 
 	sws_scale(encoderSwsContext, originalFrame->data, originalFrame->linesize,
-		0, originalH, rescaledFrame->data, rescaledFrame->linesize); 
+		0, originalH, rescaledFrame->data, rescaledFrame->linesize);
+
+	sws_freeContext(encoderSwsContext);
 
 	av_free(originalFrame);
 	av_free(rescaledFrame);

@@ -9,7 +9,6 @@
 
 #include <boost/bind.hpp>
 #include <boost/thread/thread.hpp>
-#include <boost/format.hpp>
 
 using ::std::vector;
 
@@ -137,10 +136,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		CVideoPort *pVideoPort = new CVideoPort();
 		videoPortVec.push_back(pVideoPort);
 
-		String fileName = _T("D:\\Mix_%d.yuv");
-		boost::wformat f(fileName);
-		f%(i+1);
-		pVideoPort->setOutputFileName(f.str());
+		String fileName = _T("D:\\Mix_");
+		TCHAR num[5];
+		_itow_s(i + 1, num, 10);
+		fileName += num;
+		fileName += _T(".yuv");
+		pVideoPort->setOutputFileName(fileName);
 	
 		for (unsigned j = 0; j < VIDEO_SOURCE_COUNT; ++j) {
 			const FileDesc& fileDesc = src.at(i * VIDEO_SOURCE_COUNT + j);

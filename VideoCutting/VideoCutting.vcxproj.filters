@@ -53,6 +53,12 @@
     <ClInclude Include="VideoPort.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="mmgr.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="nommgr.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -74,6 +80,9 @@
       <Filter>Sources\Mixer</Filter>
     </ClCompile>
     <ClCompile Include="VideoPort.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="mmgr.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Consumer.h"
+#include <windows.h>
+
 
 CConsumer::CConsumer(const CLayout& layout) : m_Layout(layout)
 {
@@ -97,13 +99,14 @@ bool CConsumer::MixVideo()
 		if (pProvider == NULL)
 			continue;
 
+
+		////////////////////////////////////////////////////////////////////////////////
+		// take next frame
 		const size_t frameLen = pProvider->getFrameLength();
 		Uint8 * frameBuff = new Uint8 [frameLen];
 		if (frameBuff == NULL)
 			continue;
 
-		////////////////////////////////////////////////////////////////////////////////
-		// take next frame
 		size_t copyLen = pProvider->getNextFrame(frameBuff);
 		if (copyLen == 0) {
 			delete [] frameBuff;
@@ -127,6 +130,7 @@ bool CConsumer::MixVideo()
 
 		if (scaledW == originW && scaledH == originH) {
 			scaledBuff = frameBuff;
+			frameBuff = NULL;
 		} else {
 			scaledBuff = new Uint8 [scaledBuffSize];
 			if (scaledBuff == NULL) {
@@ -149,6 +153,7 @@ bool CConsumer::MixVideo()
 		Uint8 *croppedBuff = NULL;
 		if (scaledW <= frameW && scaledH <= frameH) {
 			croppedBuff = scaledBuff;
+			scaledBuff = NULL;
 		} else {
 			unsigned croppedBuffSize = 
 			static_cast<unsigned>(frameW * frameH * YUV_SIZE_KOEF);
@@ -165,14 +170,14 @@ bool CConsumer::MixVideo()
 			scaledBuff = NULL;
 		}
 		
-		////////////////////////////////////////////////////////////////////////////////
-		// add frame into layout
+		//////////////////////////////////////////////////////////////////////////////////
+		//// add frame into layout
 		unsigned uBlockPos = static_cast<unsigned>(m_Layout.getFrameArea(frameNum));
 		unsigned vBlockPos = uBlockPos + uBlockPos / 4;
 		CombineFrame(croppedBuff, croppedBuff + uBlockPos, 
 			croppedBuff + vBlockPos, frameNum);
 		bMixedData = true;
-
+					
 		delete [] croppedBuff;
 		croppedBuff = NULL;
 	}
@@ -228,11 +233,14 @@ void CConsumer::CropFrame(Uint8 *srcBuff,
 
 	if (resultedW % 2) ++resultedW;
 	if (resultedH % 2) ++resultedH;
-	unsigned paddingByWidth = (originalW - resultedW) / 2;
 
 	// allo the only possibilities to cut insode and error in case of outside
 	if (resultedW > originalW || resultedH > originalH)
 		return; // say error
+
+	unsigned paddingLeft = (originalW - resultedW) / 2;
+	if (paddingLeft % 2) ++paddingLeft;
+	unsigned paddingRight = (originalW - paddingLeft - resultedW);
 
 	unsigned long long originalFrameSize = originalW * originalH;
 	unsigned long long originalComponentSize = originalFrameSize / 4;
@@ -259,25 +267,25 @@ void CConsumer::CropFrame(Uint8 *srcBuff,
 		for (unsigned int j = 0; j < 2; ++j)
 		{
 			// skip the left part
-			originalFrameBuffer += paddingByWidth;
+			originalFrameBuffer += paddingLeft;
 			// copy the needed space from original to resulted buffer
 			memcpy(resultedFrameBuffer, originalFrameBuffer, resultedW);
 			// move over middle part and skip the right part
-			originalFrameBuffer += resultedW + paddingByWidth;
+			originalFrameBuffer += resultedW + paddingRight;
 			// move resulted buffer to the next line
 			resultedFrameBuffer += resultedW;
 		}
 
 		// modify the U and V components
 		// skip the left part
-		originalUbuffer += paddingByWidth / 2;
-		originalVbuffer += paddingByWidth / 2;
+		originalUbuffer += paddingLeft / 2;
+		originalVbuffer += paddingLeft / 2;
 		// copy the needed chunk of components
 		memcpy(resultedUbuffer, originalUbuffer, resultedW / 2);
 		memcpy(resultedVbuffer, originalVbuffer, resultedW / 2);
 		// move over middle part and skip the right part
-		originalUbuffer += (resultedW + paddingByWidth) / 2;
-		originalVbuffer += (resultedW + paddingByWidth) / 2;
+		originalUbuffer += (resultedW + paddingRight) / 2;
+		originalVbuffer += (resultedW + paddingRight) / 2;
 		// move resultedU and resultedV over 1 frame's line
 		resultedUbuffer += resultedW / 2;
 		resultedVbuffer += resultedW / 2;
@@ -381,4 +389,5 @@ void CConsumer::CombineFrame(const Uint8 *ovrFrameBuffer,
 
 	// 3 stage
 	// skip the rest - do nothing
+
 }

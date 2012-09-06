@@ -55,6 +55,7 @@ bool CWaveMixer::MixData()
 		unsigned dataLen = pProvider->getNextDataPortion(m_PortionLen, dataStream);
 		if (dataLen < 1) {
 			delete [] dataStream;
+			dataStream = NULL;
 			continue;
 		}
 
@@ -68,6 +69,7 @@ bool CWaveMixer::MixData()
 		}
 
 		delete [] dataStream;
+		dataStream = NULL;
 	}
 
 	return m_MixedStream != NULL;

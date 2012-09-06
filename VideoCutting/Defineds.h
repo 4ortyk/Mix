@@ -11,4 +11,7 @@ typedef ::std::wstring String;
 
 #define YUV_SIZE_KOEF 1.5f
 
+#define VIDEO_LEN_SEC 1
+#define FRAMES_PER_SEC 25
+
 typedef unsigned __int8 Uint8;

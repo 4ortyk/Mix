@@ -2,13 +2,13 @@
 #include "VideoPort.h"
 #include "Layout.h"
 #include <boost/thread/thread.hpp>
+#include <Windows.h>
 
 #ifdef MODE_FFMPEG
 #include "FfmpegMixer.h"
 #endif
 
-#define VIDEO_LEN_SEC 20
-#define FRAMES_PER_SEC 25
+boost::recursive_mutex CVideoPort::m_Mutex;
 
 CVideoPort::CVideoPort()
 {
@@ -19,7 +19,6 @@ CVideoPort::CVideoPort()
 
 CVideoPort::~CVideoPort()
 {
-
 }
 
 
@@ -83,7 +82,12 @@ void CVideoPort::Mix()
 	bool bMixed = false;
 	do {
 		::std::clock_t beforeMixT = ::std::clock();
-		bMixed = mixer.MixVideo();
+		
+		{
+			boost::lock_guard<boost::recursive_mutex> lock(m_Mutex);
+			bMixed = mixer.MixVideo();
+		}
+
 		if (!bMixed)
 			continue;
 

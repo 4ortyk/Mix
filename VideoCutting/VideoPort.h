@@ -1,6 +1,7 @@
 #pragma once
 #include "DataProvider.h"
 #include "Defineds.h"
+#include <boost/thread/recursive_mutex.hpp>
 
 class CPlayer;
 
@@ -26,4 +27,6 @@ private:
 	bool m_Started;								// is mixing thread already runs flag
 	
 	String m_OutputFileName;					// file name with output mixed data
+
+	static boost::recursive_mutex m_Mutex;
 };
