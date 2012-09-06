@@ -37,6 +37,17 @@ CSoxMixer::CSoxMixer(const CSoxMixer& obj) : CConsumer(obj)
 }
 
 
+CSoxMixer& CSoxMixer::operator=(const CConsumer& obj)
+{
+	if (this == &obj)
+		return *this;
+
+	CConsumer::operator=(obj);
+	
+	return *this;
+}
+
+
 CSoxMixer& CSoxMixer::operator=(const CSoxMixer& obj)
 {
 	if (this == &obj)

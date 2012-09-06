@@ -13,6 +13,15 @@ CWaveMixer::CWaveMixer(const CWaveMixer& obj) : CConsumer(obj)
 {
 }
 
+CWaveMixer& CWaveMixer::operator=(const CConsumer& obj)
+{
+	if (this == &obj)
+		return *this;
+
+	CConsumer::operator=(obj);
+	
+	return *this;
+}
 
 CWaveMixer& CWaveMixer::operator=(const CWaveMixer& obj)
 {

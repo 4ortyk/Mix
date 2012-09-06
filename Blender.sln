@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AudioMix", "AudioMix\AudioMix.vcxproj", "{35FA52D2-ED82-4269-BC8D-0D443171ABFA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VideoCutting", "VideoCutting\VideoCutting.vcxproj", "{D1809D83-F401-4DF5-9E63-53B485D4E1F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -31,6 +33,22 @@ Global
 		{35FA52D2-ED82-4269-BC8D-0D443171ABFA}.Wave_Debug|Win32.Build.0 = Wave_Debug|Win32
 		{35FA52D2-ED82-4269-BC8D-0D443171ABFA}.Wave_Release|Win32.ActiveCfg = Wave_Release|Win32
 		{35FA52D2-ED82-4269-BC8D-0D443171ABFA}.Wave_Release|Win32.Build.0 = Wave_Release|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Debug|Win32.Build.0 = Debug|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Release|Win32.ActiveCfg = Release|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Release|Win32.Build.0 = Release|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.SDL_Debug|Win32.ActiveCfg = Debug|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.SDL_Debug|Win32.Build.0 = Debug|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.SDL_Release|Win32.ActiveCfg = Release|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.SDL_Release|Win32.Build.0 = Release|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Sox_Debug|Win32.ActiveCfg = Debug|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Sox_Debug|Win32.Build.0 = Debug|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Sox_Release|Win32.ActiveCfg = Release|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Sox_Release|Win32.Build.0 = Release|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Wave_Debug|Win32.ActiveCfg = Debug|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Wave_Debug|Win32.Build.0 = Debug|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Wave_Release|Win32.ActiveCfg = Release|Win32
+		{D1809D83-F401-4DF5-9E63-53B485D4E1F9}.Wave_Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

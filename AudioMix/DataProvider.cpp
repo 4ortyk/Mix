@@ -79,7 +79,7 @@ Uint8 CDataProvider::getVolume() const
 }
 
 // init provider data form stream
-void CDataProvider::setBuffer(unsigned __int8* buff, const unsigned buffLen)
+void CDataProvider::setBuffer(Uint8* buff, const unsigned buffLen)
 {
 	if (buff == NULL)
 		return;
@@ -88,7 +88,7 @@ void CDataProvider::setBuffer(unsigned __int8* buff, const unsigned buffLen)
 	if (m_Buffer)
 		delete [] m_Buffer;
 
-	m_Buffer = new unsigned __int8[m_BuffLen];
+	m_Buffer = new Uint8[m_BuffLen];
 	memcpy(buff, m_Buffer, buffLen);
 }
 
@@ -114,12 +114,7 @@ void CDataProvider::setBufferFromFile(const String& fileName, unsigned headerSiz
 	inputFile.close();
 }
 
-////////////////////////////////////////////////////////////////
-// copy next data portion from provider buffer
-// @param len - portion size
-// @buff - output buffer with coppied data
-// return count of copied data
-unsigned CDataProvider::getNextDataPortion(unsigned len, unsigned __int8* buff)
+unsigned CDataProvider::getNextDataPortion(unsigned len, Uint8* buff)
 {
 	if (buff == NULL)
 		return 0;
@@ -128,7 +123,7 @@ unsigned CDataProvider::getNextDataPortion(unsigned len, unsigned __int8* buff)
 		return 0;
 
 	unsigned copySize = ((m_Pos + len) < m_BuffLen) ? len : m_BuffLen - m_Pos - 1;
-	memcpy(buff, m_Buffer + m_Pos , copySize);
+	errno_t isError = memcpy_s(buff, copySize, m_Buffer + m_Pos , copySize);
 	m_Pos += copySize;
-	return copySize;
+	return (isError) ? 0 : copySize;
 }

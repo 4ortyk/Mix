@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headers\Data">
+      <UniqueIdentifier>{8634dc2e-220d-4a6b-8f19-dc9c3103afa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Data">
+      <UniqueIdentifier>{fd3128f0-c344-4497-b50d-a2ad39d19068}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Mixer">
+      <UniqueIdentifier>{38630c7c-f980-460f-aba2-82ec8ddea8b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Mixer">
+      <UniqueIdentifier>{5f26593f-a512-4558-b9cd-fe0c7846ab9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Layout">
+      <UniqueIdentifier>{4b0a7615-be2d-44c4-8647-820289bf99a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Layout">
+      <UniqueIdentifier>{6809f888-3c7a-4d1c-8f18-288e6deebaae}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Defineds.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DataProvider.h">
+      <Filter>Headers\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Consumer.h">
+      <Filter>Headers\Mixer</Filter>
+    </ClInclude>
+    <ClInclude Include="Layout.h">
+      <Filter>Headers\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="FfmpegMixer.h">
+      <Filter>Headers\Mixer</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoPort.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoCutting.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DataProvider.cpp">
+      <Filter>Sources\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Consumer.cpp">
+      <Filter>Sources\Mixer</Filter>
+    </ClCompile>
+    <ClCompile Include="Layout.cpp">
+      <Filter>Sources\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="FfmpegMixer.cpp">
+      <Filter>Sources\Mixer</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoPort.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

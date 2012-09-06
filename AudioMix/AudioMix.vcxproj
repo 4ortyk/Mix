@@ -280,9 +280,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="AudioPort.h" />
     <ClInclude Include="Consumer.h" />
     <ClInclude Include="DataProvider.h" />
@@ -301,7 +298,7 @@
     <ClCompile Include="DataProvider.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SDLPlayer.cpp" />
-    <ClCompile Include="SDLTest.cpp" />
+    <ClCompile Include="AudioMix.cpp" />
     <ClCompile Include="SoxMixer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

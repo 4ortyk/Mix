@@ -47,6 +47,16 @@ CSDLPlayer::~CSDLPlayer()
 	SDL_CloseAudio();
 }
 
+CSDLPlayer& CSDLPlayer::operator=(const CPlayer& obj)
+{
+	if (this == &obj)
+		return *this;
+
+	CPlayer::operator=(obj);
+
+	return *this;
+}
+
 CSDLPlayer& CSDLPlayer::operator=(const CSDLPlayer& obj)
 {
 	if (this == &obj)

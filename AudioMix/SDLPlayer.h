@@ -10,6 +10,7 @@ public:
 	CSDLPlayer(const CSDLPlayer& obj);
 	~CSDLPlayer();
 
+	virtual CSDLPlayer& operator=(const CPlayer& obj);
 	virtual CSDLPlayer& operator=(const CSDLPlayer& obj);
 
 	virtual void Play(unsigned trackTimeLenMs);

@@ -75,7 +75,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		pAudioPort->setOutputFileName(f.str());
 	
 		for (unsigned j = 0; j < AUDIO_SOURCE_COUNT; ++j) {
-			pAudioPort->AddDataFile(srcNames.at(i + j));
+			pAudioPort->AddDataFile(srcNames.at(i * AUDIO_SOURCE_COUNT + j));
 		}
 
 		if (i == 0) {

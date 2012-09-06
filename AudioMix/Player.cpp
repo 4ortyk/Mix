@@ -10,10 +10,12 @@ CPlayer::CPlayer()
 	m_Stream = NULL;
 }
 
+
 CPlayer::CPlayer(const CPlayer& obj)
 {
 	*this = obj;
 }
+
 
 CPlayer::~CPlayer()
 {

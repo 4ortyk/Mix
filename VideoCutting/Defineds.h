@@ -6,8 +6,9 @@ typedef ::std::string String;
 typedef ::std::wstring String;
 #endif
 
-#define AUDIO_PORT_COUNT 8
-#define AUDIO_SOURCE_COUNT 4
-#define BYTES_PER_SEC 2
+#define VIDEO_PORT_COUNT 8
+#define VIDEO_SOURCE_COUNT 3
+
+#define YUV_SIZE_KOEF 1.5f
 
 typedef unsigned __int8 Uint8;

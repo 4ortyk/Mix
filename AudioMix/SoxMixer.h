@@ -17,6 +17,7 @@ public:
 	CSoxMixer(double timeLenSec);
 	CSoxMixer(const CSoxMixer& obj);
 
+	virtual CSoxMixer& operator=(const CConsumer& obj);
 	virtual CSoxMixer& operator=(const CSoxMixer& obj);
 
 	// mix audio data from different sourses into sign stream using sox lib algorithm

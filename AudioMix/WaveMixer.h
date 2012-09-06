@@ -6,6 +6,7 @@ public:
 	CWaveMixer(double timeLenSec);
 	CWaveMixer(const CWaveMixer& obj);
 
+	virtual CWaveMixer& operator=(const CConsumer& obj);
 	virtual CWaveMixer& operator=(const CWaveMixer& obj);
 
 	// mix audio data from different sourses into sign stream using byte mixing

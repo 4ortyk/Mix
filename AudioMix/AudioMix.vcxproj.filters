@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AudioPort.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Consumer.cpp">
+      <Filter>Sources\Mixer</Filter>
+    </ClCompile>
+    <ClCompile Include="DataProvider.cpp">
+      <Filter>Sources\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Sources\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLMixer.cpp">
+      <Filter>Sources\Mixer</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLPlayer.cpp">
+      <Filter>Sources\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioMix.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="SoxMixer.cpp">
+      <Filter>Sources\Mixer</Filter>
+    </ClCompile>
+    <ClCompile Include="WaveMixer.cpp">
+      <Filter>Sources\Mixer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AudioPort.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Defineds.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DataProvider.h">
+      <Filter>Headers\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="SoxMixer.h">
+      <Filter>Headers\Mixer</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLMixer.h">
+      <Filter>Headers\Mixer</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveMixer.h">
+      <Filter>Headers\Mixer</Filter>
+    </ClInclude>
+    <ClInclude Include="Consumer.h">
+      <Filter>Headers\Mixer</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Headers\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLPlayer.h">
+      <Filter>Headers\Player</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{2559aae3-ebca-4fd2-aa35-83dea5eead09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{20ef70e2-f0f8-4c43-a6c5-2631413408d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Data">
+      <UniqueIdentifier>{c607e3d2-9285-424b-b8ae-77e43b667e1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Mixer">
+      <UniqueIdentifier>{ffaa2e87-6410-478c-8a42-d2ab81451b19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Player">
+      <UniqueIdentifier>{1ae1f061-2117-465d-8473-3e87d87c82cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Data">
+      <UniqueIdentifier>{1c403af8-f73a-40f7-82f7-b91cb0dfa012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Mixer">
+      <UniqueIdentifier>{1bfe8cb1-501b-4143-8af8-501bf38babb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Player">
+      <UniqueIdentifier>{dc433b23-4b7c-433a-a4aa-099859e6dcd3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

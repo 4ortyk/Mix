@@ -33,7 +33,9 @@ public:
 	virtual unsigned getBytesPerSec() const;
 
 protected:
-	// calculate data sample length using audio stream params
+	/** 
+	 * Calculate data sample length using audio stream params
+	 */
 	virtual void ReCalculatePartLength();
 
 protected:

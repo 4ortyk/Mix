@@ -13,6 +13,17 @@ CSDLMixer::CSDLMixer(const CSDLMixer& obj) : CConsumer(obj)
 }
 
 
+CSDLMixer& CSDLMixer::operator=(const CConsumer& obj)
+{
+	if (this == &obj)
+		return *this;
+
+	CConsumer::operator=(obj);
+	
+	return *this;
+}
+
+
 CSDLMixer& CSDLMixer::operator=(const CSDLMixer& obj)
 {
 	if (this == &obj)
