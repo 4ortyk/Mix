@@ -11,11 +11,14 @@
 
 #include "Player.h"
 #include <boost/bind.hpp>
+#include <boost/thread/thread.hpp>
 
 #define FREQ 44100UL
 #define CHANELS_COUNT 2U
 #define WAV_HEADER_SIZE 44
 #define PART_TIME_MS 200U
+
+boost::recursive_mutex CAudioPort::m_Mutex;
 
 CAudioPort::CAudioPort()
 {
@@ -102,7 +105,10 @@ void CAudioPort::Mix()
 	bool bMixed = false;
 	do {
 		std::clock_t beforeMixT = std::clock();
-		bMixed = mixer.MixData();
+		{
+			boost::lock_guard<boost::recursive_mutex> lock(m_Mutex);
+			bMixed = mixer.MixData();
+		}
 		if (!bMixed)
 			continue;
 
@@ -110,7 +116,6 @@ void CAudioPort::Mix()
 		unsigned buffLen = mixer.getPortionLength();
 		if (mixBuff == NULL || buffLen < 1)
 			continue;
-		fprintf(stderr, "i: %d\n", i++);
 		
 		if (!m_OutputFileName.empty()) {
 			outputFile.write((const char *) mixBuff, buffLen);

@@ -1,5 +1,5 @@
 #pragma once
-#include <boost/thread/thread.hpp>
+#include <boost/thread/recursive_mutex.hpp>
 #include <string>
 #include "DataProvider.h"
 #include "Defineds.h"
@@ -27,8 +27,12 @@ private:
 
 private:
 	CDataProvider::ProviderVec m_Providers;		// vector of data provider pointers
+	
 	bool m_Started;								// is mixing thread already runs flag
 	
 	String m_OutputFileName;					// file name with output mixed data
+
 	CPlayer * m_pPlayer;						// plyer which should play mixed stream
+
+	static boost::recursive_mutex m_Mutex;
 };

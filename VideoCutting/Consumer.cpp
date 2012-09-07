@@ -1,7 +1,11 @@
 #include "stdafx.h"
 #include "Consumer.h"
 #include <windows.h>
+#include <ctime>
 
+using ::std::clock_t;
+using ::std::clock;
+using ::std::cout;
 
 CConsumer::CConsumer(const CLayout& layout) : m_Layout(layout)
 {
@@ -102,6 +106,9 @@ bool CConsumer::MixVideo()
 
 		////////////////////////////////////////////////////////////////////////////////
 		// take next frame
+#ifdef _DEBUG
+		clock_t getFrameTime = clock();
+#endif
 		const size_t frameLen = pProvider->getFrameLength();
 		Uint8 * frameBuff = new Uint8 [frameLen];
 		if (frameBuff == NULL)
@@ -113,9 +120,14 @@ bool CConsumer::MixVideo()
 			frameBuff = NULL;
 			continue;
 		}
-
+#ifdef _DEBUG
+		cout << "Get frame time: " << (clock() - getFrameTime) / (double) CLOCKS_PER_SEC << "s" << ::std::endl;
+#endif
 		////////////////////////////////////////////////////////////////////////////////
 		// scale frame
+#ifdef _DEBUG
+		clock_t scaleFrameTime = clock();
+#endif
 		unsigned frameNum = it - m_Providers.begin();
 		size_t originH = pProvider->getHeight();
 		size_t originW = pProvider->getWidth();
@@ -145,9 +157,15 @@ bool CConsumer::MixVideo()
 			delete [] frameBuff;
 			frameBuff = NULL;
 		}
+#ifdef _DEBUG
+		cout << "Scale frame time: " << (clock() - scaleFrameTime) / (double) CLOCKS_PER_SEC << "s" << ::std::endl;
+#endif
 
 		////////////////////////////////////////////////////////////////////////////////
 		// crop too large frame
+#ifdef _DEBUG
+		clock_t cropFrameTime = clock();
+#endif
 		size_t frameW = m_Layout.getWidth(frameNum);
 		size_t frameH = m_Layout.getHeight(frameNum);
 		Uint8 *croppedBuff = NULL;
@@ -169,9 +187,15 @@ bool CConsumer::MixVideo()
 			delete [] scaledBuff;
 			scaledBuff = NULL;
 		}
+#ifdef _DEBUG
+		cout << "Crop frame time: " << (clock() - cropFrameTime) / (double) CLOCKS_PER_SEC << "s" << ::std::endl;
+#endif
 		
 		//////////////////////////////////////////////////////////////////////////////////
 		//// add frame into layout
+#ifdef _DEBUG
+		clock_t combineTime = clock();
+#endif
 		unsigned uBlockPos = static_cast<unsigned>(m_Layout.getFrameArea(frameNum));
 		unsigned vBlockPos = uBlockPos + uBlockPos / 4;
 		CombineFrame(croppedBuff, croppedBuff + uBlockPos, 
@@ -180,6 +204,9 @@ bool CConsumer::MixVideo()
 					
 		delete [] croppedBuff;
 		croppedBuff = NULL;
+#ifdef _DEBUG
+		cout << "Combine time: " << (clock() - combineTime) / (double) CLOCKS_PER_SEC << "s" << ::std::endl;
+#endif
 	}
 
 	return bMixedData;

@@ -2,10 +2,20 @@
 #include <vector>
 
 /**
- *
+ * CLayout	[class] describes different resources video frames position
  */
 class CLayout {
 public:
+	/**
+	 * ScaleFillType enum contains video frame scaling modes
+	 * @eFillNone		not scale video to layout frame size
+	 * @eFillByWidth	scale video width to layout frame width 
+	 *					and scale video height proportional to video width
+	 * @eFillByHeight	scale video heigth to layout frame height 
+	 *					and scale video width proportional to video height
+	 * In order to scale video width & height to frame size (with losing 
+	 * video size proportion) use binary OR operation
+	 */
 	enum eScaleFillType { eFillNone = 0, eFillByWidth = 1, eFillByHeight = 2 };
 
 public:

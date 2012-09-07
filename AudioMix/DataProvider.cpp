@@ -119,7 +119,7 @@ void CDataProvider::setBufferFromFile(const String& fileName, unsigned headerSiz
 
 unsigned CDataProvider::getNextDataPortion(unsigned len, Uint8* buff)
 {
-	if (buff == NULL)
+	if (buff == NULL || m_Buffer == 0)
 		return 0;
 
 	if (m_Pos == m_BuffLen - 1)

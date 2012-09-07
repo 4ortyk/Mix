@@ -95,20 +95,19 @@ void CVideoPort::Mix()
 		unsigned buffLen = mixer.getFrameLength();
 		if (mixBuff == NULL || buffLen < 1)
 			continue;
-		fprintf(stderr, "i: %d\n", i++);
 		
 		if (!m_OutputFileName.empty()) {
 			outputFile.write((const char *) mixBuff, buffLen);
 		}
 
 		::std::clock_t afterMixT = ::std::clock();
-		int sleepTime = 1000 / FRAMES_PER_SEC - (afterMixT - beforeMixT);
+		int sleepTime = 500 / FRAMES_PER_SEC - (afterMixT - beforeMixT);
 		if (sleepTime > 0) {
 			boost::posix_time::milliseconds ptMs(sleepTime);
 			boost::this_thread::sleep(ptMs);
 		}
 	} while (bMixed);
-	fprintf(stderr, "\nTime: %0.4fs\n", (std::clock() - start) / (double) CLOCKS_PER_SEC);
+	::std::cout << "\nTime: " << (std::clock() - start) / (double) CLOCKS_PER_SEC << "s" << ::std::endl;
 	/////////////////////////////////////////////////////////////////////////////
 
 	outputFile.close();

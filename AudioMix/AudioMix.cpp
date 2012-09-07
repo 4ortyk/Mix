@@ -2,7 +2,8 @@
 //
 
 #include "stdafx.h"
-#include <boost/format.hpp>
+#include <boost\thread\thread.hpp>
+#include <boost\bind.hpp>
 #include <string>
 #include <vector>
 #include "AudioPort.h"
@@ -19,45 +20,45 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector<String> srcNames;
 	srcNames.reserve(AUDIO_PORT_COUNT * AUDIO_SOURCE_COUNT);
 	// for 1st provider
-	srcNames.push_back(_T("../../data/sound2_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound3_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound4_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound5_Cut.wav"));
+	srcNames.push_back(_T("../../data/1_Cut.wav"));
+	srcNames.push_back(_T("../../data/2_Cut.wav"));
+	srcNames.push_back(_T("../../data/3_Cut.wav"));
+	srcNames.push_back(_T("../../data/4_Cut.wav"));
 	// for 2nd provider
-	srcNames.push_back(_T("../../data/sound6_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound7_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound8_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound9_Cut.wav"));
+	srcNames.push_back(_T("../../data/5_Cut.wav"));
+	srcNames.push_back(_T("../../data/6_Cut.wav"));
+	srcNames.push_back(_T("../../data/7_Cut.wav"));
+	srcNames.push_back(_T("../../data/8_Cut.wav"));
 	// for 3rd provider
-	srcNames.push_back(_T("../../data/sound10_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound11_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound12_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound2_Cut.wav"));
+	srcNames.push_back(_T("../../data/9_Cut.wav"));
+	srcNames.push_back(_T("../../data/10_Cut.wav"));
+	srcNames.push_back(_T("../../data/11_Cut.wav"));
+	srcNames.push_back(_T("../../data/1_Cut.wav"));
 	// for 4th provider
-	srcNames.push_back(_T("../../data/sound5_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound7_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound9_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound3_Cut.wav"));
+	srcNames.push_back(_T("../../data/4_Cut.wav"));
+	srcNames.push_back(_T("../../data/6_Cut.wav"));
+	srcNames.push_back(_T("../../data/8_Cut.wav"));
+	srcNames.push_back(_T("../../data/2_Cut.wav"));
 	// for 5th provider
-	srcNames.push_back(_T("../../data/sound11_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound3_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound12_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound6_Cut.wav"));
+	srcNames.push_back(_T("../../data/10_Cut.wav"));
+	srcNames.push_back(_T("../../data/2_Cut.wav"));
+	srcNames.push_back(_T("../../data/11_Cut.wav"));
+	srcNames.push_back(_T("../../data/5_Cut.wav"));
 	// for 6th provider
-	srcNames.push_back(_T("../../data/sound4_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound5_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound9_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound10_Cut.wav"));
+	srcNames.push_back(_T("../../data/3_Cut.wav"));
+	srcNames.push_back(_T("../../data/4_Cut.wav"));
+	srcNames.push_back(_T("../../data/8_Cut.wav"));
+	srcNames.push_back(_T("../../data/9_Cut.wav"));
 	// for 7th provider
-	srcNames.push_back(_T("../../data/sound2_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound6_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound10_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound5_Cut.wav"));
+	srcNames.push_back(_T("../../data/1_Cut.wav"));
+	srcNames.push_back(_T("../../data/5_Cut.wav"));
+	srcNames.push_back(_T("../../data/9_Cut.wav"));
+	srcNames.push_back(_T("../../data/4_Cut.wav"));
 	// for 8th provider
-	srcNames.push_back(_T("../../data/sound4_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound9_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound3_Cut.wav"));
-	srcNames.push_back(_T("../../data/sound12_Cut.wav"));
+	srcNames.push_back(_T("../../data/3_Cut.wav"));
+	srcNames.push_back(_T("../../data/8_Cut.wav"));
+	srcNames.push_back(_T("../../data/2_Cut.wav"));
+	srcNames.push_back(_T("../../data/11_Cut.wav"));
 
 	CSDLPlayer player(44100, 2);
 
@@ -84,6 +85,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			pAudioPort->setPlayer(&player);
 		}
 	
+		::std::cout << "Start thread # " << i + 1 << ::std::endl;
 		group.create_thread(boost::bind(&CAudioPort::openPort, pAudioPort));
 	}
 	group.join_all();

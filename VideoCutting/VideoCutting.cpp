@@ -136,7 +136,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		CVideoPort *pVideoPort = new CVideoPort();
 		videoPortVec.push_back(pVideoPort);
 
-		String fileName = _T("D:\\Mix_");
+		String fileName = _T("Mix_");
 		TCHAR num[5];
 		_itow_s(i + 1, num, 10);
 		fileName += num;
@@ -148,6 +148,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			pVideoPort->AddDataFile(fileDesc.fileName, fileDesc.width, fileDesc.height);
 		}
 
+		::std::cout << "Start thread # " << i + 1 << ::std::endl;
 		group.create_thread(boost::bind(&CVideoPort::openPort, pVideoPort));
 	}
 	group.join_all();
